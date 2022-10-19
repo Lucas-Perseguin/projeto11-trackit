@@ -134,7 +134,7 @@ function SignUp() {
                             style={{ marginTop: 10 }}
                         />
                     ) : (
-                        "Entrar"
+                        "Cadastrar"
                     )}
                 </button>
             </div>
