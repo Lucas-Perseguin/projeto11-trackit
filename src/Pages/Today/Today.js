@@ -124,9 +124,13 @@ function Today() {
                         )}
                     </div>
                     <HabitsContainer>
-                        {data.map((habit) => (
-                            <Habit habit={habit} />
-                        ))}
+                        {hasData ? (
+                            data.map((habit) => (
+                                <Habit habit={habit} key={habit.id} />
+                            ))
+                        ) : (
+                            <></>
+                        )}
                     </HabitsContainer>
                 </Container>
                 <Footer />
