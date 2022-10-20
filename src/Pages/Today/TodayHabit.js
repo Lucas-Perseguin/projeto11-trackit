@@ -1,4 +1,3 @@
-import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
@@ -30,7 +29,7 @@ const Title = styled.h2`
     word-wrap: break-word;
 `;
 
-function Habit({ habit }) {
+function TodayHabit({ habit }) {
     const [done, setDone] = useState(habit.done);
     const [isChanging, setChanging] = useState(false);
     function handleClick() {
@@ -73,4 +72,4 @@ function Habit({ habit }) {
     );
 }
 
-export default Habit;
+export default TodayHabit;

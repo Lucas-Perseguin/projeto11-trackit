@@ -6,7 +6,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../UserContext";
 import LoadingPage from "../LoadingPage";
-import Habit from "./Habit";
+import TodayHabit from "./TodayHabit";
 
 const Container = styled.div`
     margin-top: 70px;
@@ -126,7 +126,7 @@ function Today() {
                     <HabitsContainer>
                         {hasData ? (
                             data.map((habit) => (
-                                <Habit habit={habit} key={habit.id} />
+                                <TodayHabit habit={habit} key={habit.id} />
                             ))
                         ) : (
                             <></>
