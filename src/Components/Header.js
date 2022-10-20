@@ -4,7 +4,9 @@ import UserContext from "../UserContext";
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 18px;
     position: fixed;
     top: 0;
     left: 0;
