@@ -9,6 +9,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #e5e5e5;
 `;
 
 function Habits() {

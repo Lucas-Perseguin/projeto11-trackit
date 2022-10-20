@@ -31,7 +31,7 @@ const Container = styled.div`
         background: #ffffff;
         border: 1px solid #d5d5d5;
         border-radius: 5px;
-        color: #dbdbdb;
+        color: #000000;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
@@ -73,6 +73,8 @@ function Login() {
             promisse.then((response) => {
                 user.name = response.data.name;
                 user.image = response.data.image;
+                localStorage.setItem("name", `${response.data.name}`);
+                localStorage.setItem("image", `${response.data.image}`);
                 setUser(user);
                 localStorage.setItem("token", `${response.data.token}`);
                 navigate("/hoje");

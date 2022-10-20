@@ -4,11 +4,12 @@ import Header from "../../Components/Header";
 
 const Container = styled.div`
     margin-top: 70px;
-    margin-top: 70px;
+    padding-top: 28px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #e5e5e5;
 `;
 
 function History() {

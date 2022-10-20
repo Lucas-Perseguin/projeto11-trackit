@@ -1,10 +1,13 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../UserContext";
 
 const Container = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
     padding: 0 18px;
     position: fixed;
@@ -18,7 +21,7 @@ const Container = styled.div`
         height: 51px;
         border-radius: 98px;
     }
-    h2 {
+    h1 {
         font-style: normal;
         font-weight: 400;
         font-size: 38px;
@@ -28,9 +31,12 @@ const Container = styled.div`
 
 function Header() {
     const { user } = useContext(UserContext);
+    console.log(user);
     return (
         <Container>
-            <h1>TrackIt</h1>
+            <Link to="/hoje" relative="path">
+                <h1>TrackIt</h1>
+            </Link>
             <img src={user.image} alt="Imagem do usuário" />
         </Container>
     );

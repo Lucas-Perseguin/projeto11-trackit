@@ -9,7 +9,7 @@ const Container = styled.div`
     left: 0;
 `;
 
-const hojeButton = styled.div`
+const HojeButton = styled.div`
     width: 90px;
     height: 90px;
     background: #52b6ff;
@@ -24,17 +24,18 @@ const hojeButton = styled.div`
         font-size: 18px;
         color: #ffffff;
         line-height: 90px;
+        text-decoration: none;
     }
 `;
 
-const greyBar = styled.div`
+const GreyBar = styled.div`
     width: 100%;
     height: 10px;
     background: none;
     border: none;
 `;
 
-const menuBar = styled.div`
+const MenuBar = styled.div`
     width: 100%;
     height: 90px;
     display: flex;
@@ -55,19 +56,19 @@ function Footer() {
     return (
         <Container>
             <Link to="/hoje" relative="path">
-                <hojeButton>
+                <HojeButton>
                     <h2>Hoje</h2>
-                </hojeButton>
+                </HojeButton>
             </Link>
-            <greyBar></greyBar>
-            <menuBar>
+            <GreyBar></GreyBar>
+            <MenuBar>
                 <Link to="/habitos" relative="path">
                     <h2>Hábitos</h2>
                 </Link>
                 <Link to="/historico" relative="path">
                     <h2>Histórico</h2>
                 </Link>
-            </menuBar>
+            </MenuBar>
         </Container>
     );
 }
