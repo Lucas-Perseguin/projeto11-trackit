@@ -14,7 +14,8 @@ const Container = styled.div`
     margin-bottom: 100px;
     padding-top: 28px;
     width: 100%;
-    height: calc(100vh - 228px);
+    height: 100%;
+    min-height: calc(100vh - 228px);
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
