@@ -50,6 +50,10 @@ const MenuBar = styled.div`
         font-size: 18px;
         color: #52b6ff;
     }
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
 `;
 
 function Footer() {

@@ -27,11 +27,14 @@ const Container = styled.div`
         font-size: 38px;
         color: #ffffff;
     }
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
 `;
 
 function Header() {
     const { user } = useContext(UserContext);
-    console.log(user);
     return (
         <Container>
             <Link to="/hoje" relative="path">

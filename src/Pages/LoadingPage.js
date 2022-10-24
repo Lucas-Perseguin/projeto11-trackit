@@ -9,7 +9,7 @@ const LoadingPageStyled = styled.div`
     width: 100%;
     height: 100vh;
     gap: 20px;
-    h1 {
+    h2 {
         font-weight: 400;
         font-size: 23px;
         color: #52b6ff;
@@ -31,7 +31,7 @@ function LoadingPage({ text }) {
                 visible={true}
                 style={{ marginTop: 10 }}
             />
-            <h1>{text}</h1>
+            <h2>{text}</h2>
         </LoadingPageStyled>
     );
 }

@@ -4,20 +4,19 @@ import styled from "styled-components";
 
 const Container = styled.div`
     height: 94px;
-    width: 90%;
-    max-width: 340px;
+    width: 100%;
     border-radius: 4px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #ffffff;
+    border-radius: 5px;
     ion-icon {
-        color: ${(props) => (done ? "green" : "lightgrey" || null)};
+        color: ${(props) => (props.done ? "green" : "lightgrey" || null)};
     }
-    h2 {
-        font-weight: 300;
-        font-size: 16px;
-        font-style: normal;
-        color: #000000;
+    ion-icon {
+        width: 80px;
+        height: 80px;
     }
 `;
 
@@ -29,7 +28,23 @@ const Title = styled.h2`
     word-wrap: break-word;
 `;
 
-function TodayHabit({ habit }) {
+const Sequence = styled.h2`
+    font-weight: 300;
+    font-size: 16px;
+    font-style: normal;
+    color: #000000;
+    white-space: nowrap;
+`;
+
+const Emphasis = styled.strong`
+    color: ${(props) => (props.emphasis ? "#8fc549" : "#000000" || null)};
+    font-size: inherit;
+    font-weight: inherit;
+    display: inline-block;
+    font-family: "Lexend Deca", sans-serif;
+`;
+
+function TodayHabit({ habit, disabled = false }) {
     const [done, setDone] = useState(habit.done);
     const [isChanging, setChanging] = useState(false);
     function handleClick() {
@@ -40,9 +55,15 @@ function TodayHabit({ habit }) {
                 Authorization: "Bearer " + localStorage.getItem("token"),
             },
         };
-        const auxLink = done ? "uncheck" : "check";
+        let auxLink = undefined;
+        if (done) {
+            auxLink = "uncheck";
+        } else {
+            auxLink = "check";
+        }
         const promisse = axios.post(
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/${auxLink}`,
+            null,
             config
         );
         promisse.then((response) => {
@@ -54,18 +75,48 @@ function TodayHabit({ habit }) {
             );
         });
     }
+    function handleClickHabit() {
+        if (isChanging) return null;
+        else return handleClick();
+    }
+    let emphasisCurrent = undefined;
+    if (habit.currentSequence >= 4) {
+        emphasisCurrent = true;
+    } else {
+        emphasisCurrent = false;
+    }
+    let emphasisRecord = undefined;
+    if (habit.highestSequence >= 4) {
+        emphasisRecord = true;
+    } else {
+        emphasisRecord = false;
+    }
     return (
         <Container done={done}>
             <div>
                 <Title>{habit.name}</Title>
                 <br />
-                <h2>{habit.currentSequence}</h2>
-                <h2>{habit.highestSequence}</h2>
+                <Sequence>
+                    Sequência atual de dias:{" "}
+                    <Emphasis emphasis={emphasisCurrent}>
+                        {habit.currentSequence} dias
+                    </Emphasis>
+                </Sequence>
+                <Sequence>
+                    Seu recorde:{" "}
+                    <Emphasis emphasis={emphasisRecord}>
+                        {habit.highestSequence} dias
+                    </Emphasis>
+                </Sequence>
             </div>
             <ion-icon
-                onClick={() => {
-                    isChanging ? null : handleClick();
-                }}
+                onClick={
+                    disabled
+                        ? null
+                        : () => {
+                              handleClickHabit();
+                          }
+                }
                 name="checkbox"
             ></ion-icon>
         </Container>

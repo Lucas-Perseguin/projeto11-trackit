@@ -10,15 +10,19 @@ import TodayHabit from "./TodayHabit";
 
 const Container = styled.div`
     margin-top: 70px;
+    padding-top: 28px;
     width: 100%;
-    height: calc(100vh - 170px);
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #e5e5e5;
-    box-sizing: border-box;
-    padding: 28px 0 20px 18px;
+    height: calc(100vh - 198px);
+    overflow-y: scroll;
+`;
+
+const HabitsContainer = styled.div`
+    width: 100%;
+    max-width: 340px;
     > div {
         width: 100%;
         font-style: normal;
@@ -50,8 +54,6 @@ const NoData = styled.h2`
     color: #bababa;
 `;
 
-const HabitsContainer = styled.div``;
-
 function Today() {
     const { user, setUser } = useContext(UserContext);
     const today = dayjs().format("dddd, DD/MM");
@@ -80,7 +82,7 @@ function Today() {
             if (response.data.length) {
                 setHasData(true);
                 setHabitsNum(response.data.length);
-                response.data.foreach((habit) => {
+                response.data.forEach((habit) => {
                     if (habit.done) setCompletedHabits(completedHabits + 1);
                 });
                 setCompletionPercentage(
@@ -103,34 +105,36 @@ function Today() {
             <>
                 <Header />
                 <Container>
-                    <div>
-                        <h2>{today}</h2>
-                        {hasData ? (
-                            hasCompleted ? (
-                                <Completed>
-                                    {completionPercentage}% dos hábitos
-                                    concluídos
-                                </Completed>
-                            ) : (
-                                <Incomplete>
-                                    Nenhum hábito conluído ainda
-                                </Incomplete>
-                            )
-                        ) : (
-                            <NoData>
-                                Você ainda não possui hábitos cadastrados para
-                                hoje
-                            </NoData>
-                        )}
-                    </div>
                     <HabitsContainer>
-                        {hasData ? (
-                            data.map((habit) => (
-                                <TodayHabit habit={habit} key={habit.id} />
-                            ))
-                        ) : (
-                            <></>
-                        )}
+                        <div>
+                            <h2>{today}</h2>
+                            {hasData ? (
+                                hasCompleted ? (
+                                    <Completed>
+                                        {completionPercentage}% dos hábitos
+                                        concluídos
+                                    </Completed>
+                                ) : (
+                                    <Incomplete>
+                                        Nenhum hábito conluído ainda
+                                    </Incomplete>
+                                )
+                            ) : (
+                                <NoData>
+                                    Você ainda não possui hábitos cadastrados
+                                    para hoje
+                                </NoData>
+                            )}
+                        </div>
+                        <div>
+                            {hasData ? (
+                                data.map((habit) => (
+                                    <TodayHabit habit={habit} key={habit.id} />
+                                ))
+                            ) : (
+                                <></>
+                            )}
+                        </div>
                     </HabitsContainer>
                 </Container>
                 <Footer />
