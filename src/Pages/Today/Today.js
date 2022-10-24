@@ -11,6 +11,7 @@ import TodayHabit from "./TodayHabit";
 const Container = styled.div`
     margin-top: 70px;
     padding-top: 28px;
+    margin-bottom: 100px;
     width: 100%;
     display: flex;
     flex-direction: column;

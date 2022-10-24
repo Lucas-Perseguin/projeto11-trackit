@@ -11,6 +11,7 @@ import LoadingPage from "../LoadingPage";
 
 const Container = styled.div`
     margin-top: 70px;
+    margin-bottom: 100px;
     padding-top: 28px;
     width: 100%;
     display: flex;
