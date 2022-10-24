@@ -30,14 +30,14 @@ const HojeButton = styled.div`
 
 const GreyBar = styled.div`
     width: 100%;
-    height: 10px;
-    background: none;
+    height: 30px;
+    background: #e5e5e5;
     border: none;
 `;
 
 const MenuBar = styled.div`
     width: 100%;
-    height: 90px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;

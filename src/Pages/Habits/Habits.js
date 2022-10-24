@@ -63,6 +63,7 @@ function Habits() {
     const [habitName, setHabitName] = useState("");
     const { user, setUser } = useContext(UserContext);
     const [habitObject, setHabitObject] = useState({ name: "", days: [] });
+    const [haveDeletedHabit, setDeletedHabit] = useState(false);
     useEffect(() => {
         user.name = localStorage.getItem("name");
         user.image = localStorage.getItem("image");
@@ -70,7 +71,6 @@ function Habits() {
         if (isSubmiting) {
             habitObject.name = habitName;
             habitObject.days.sort((a, b) => a - b);
-            console.log(habitObject.days, "enviado");
             const config = {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
@@ -86,7 +86,11 @@ function Habits() {
                 setCreatingHabit(false);
                 const auxHabit = [...habits, response.data];
                 setHabits(auxHabit);
-                console.log(auxHabit, "recebido");
+            });
+            promisse.catch((error) => {
+                alert(
+                    `Erro: ${error.response.status}\nOcorreu algum erro!\nTente novamente mais tarde`
+                );
             });
         }
         const config = {
@@ -110,7 +114,8 @@ function Habits() {
                 `Erro: ${error.response.status}\nOcorreu algum erro!\nTente novamente mais tarde`
             );
         });
-    }, [isSubmiting]);
+        if (haveDeletedHabit) setDeletedHabit(false);
+    }, [isSubmiting, haveDeletedHabit]);
     if (!isLoaded) {
         return <LoadingPage text="Carregando todas as suas tarefas!" />;
     } else {
@@ -137,7 +142,11 @@ function Habits() {
                     {hasData ? (
                         <HabitsContainer>
                             {habits.map((habit) => (
-                                <CreatedHabit key={habit.id} habit={habit} />
+                                <CreatedHabit
+                                    key={habit.id}
+                                    habit={habit}
+                                    setDeletedHabit={setDeletedHabit}
+                                />
                             ))}
                         </HabitsContainer>
                     ) : (

@@ -54,16 +54,21 @@ const NoData = styled.h2`
     color: #bababa;
 `;
 
+const TodayHabits = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`;
+
 function Today() {
     const { user, setUser } = useContext(UserContext);
     const today = dayjs().format("dddd, DD/MM");
-    const [habtisNum, setHabitsNum] = useState(0);
-    const [completedHabits, setCompletedHabits] = useState(0);
     const [isLoaded, setLoaded] = useState(false);
     const [hasData, setHasData] = useState(false);
     const [data, setData] = useState([]);
-    let hasCompleted = false;
+    const [hasCompleted, setHasCompleted] = useState(false);
     const [completionPercentage, setCompletionPercentage] = useState(0);
+    const [toggleDone, setToggleDone] = useState(false);
     useEffect(() => {
         user.name = localStorage.getItem("name");
         user.image = localStorage.getItem("image");
@@ -78,18 +83,18 @@ function Today() {
             config
         );
         promisse.then((response) => {
+            let completedHabits = 0;
             setLoaded(true);
             if (response.data.length) {
                 setHasData(true);
-                setHabitsNum(response.data.length);
                 response.data.forEach((habit) => {
-                    if (habit.done) setCompletedHabits(completedHabits + 1);
+                    if (habit.done) completedHabits++;
                 });
                 setCompletionPercentage(
-                    ((100 * completedHabits) / habtisNum).toFixed(0)
+                    ((100 * completedHabits) / response.data.length).toFixed(0)
                 );
             }
-            if (completionPercentage > 0) hasCompleted = true;
+            if (completedHabits > 0) setHasCompleted(true);
             setData(response.data);
         });
         promisse.catch((error) => {
@@ -97,7 +102,8 @@ function Today() {
                 `Erro: ${error.response.status}\nOcorreu algum erro!\nTente novamente mais tarde`
             );
         });
-    }, []);
+        if (toggleDone) setToggleDone(false);
+    }, [toggleDone]);
     if (!isLoaded) {
         return <LoadingPage text="Carregando tarefas do dia!" />;
     } else {
@@ -126,15 +132,19 @@ function Today() {
                                 </NoData>
                             )}
                         </div>
-                        <div>
+                        <TodayHabits>
                             {hasData ? (
                                 data.map((habit) => (
-                                    <TodayHabit habit={habit} key={habit.id} />
+                                    <TodayHabit
+                                        habit={habit}
+                                        key={habit.id}
+                                        setToggleDone={setToggleDone}
+                                    />
                                 ))
                             ) : (
                                 <></>
                             )}
-                        </div>
+                        </TodayHabits>
                     </HabitsContainer>
                 </Container>
                 <Footer />

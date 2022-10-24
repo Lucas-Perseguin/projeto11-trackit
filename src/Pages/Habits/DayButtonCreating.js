@@ -15,18 +15,15 @@ const DayButtonStyled = styled.button`
 function DayButtonCreating({ weekday, habitObject, setHabitObject }) {
     const weekdaysLetter = ["D", "S", "T", "Q", "Q", "S", "S"];
     const [isSelected, setselected] = useState(false);
-    console.log(habitObject, "habitObject");
     function handleClick() {
         setselected(!isSelected);
         if (isSelected) {
             const habit = { ...habitObject };
             habit.days.splice(habit.days.indexOf(weekday), 1);
-            console.log(habit, "habit tirado");
             setHabitObject(habit);
         } else {
             const habit = { ...habitObject };
             habit.days.push(weekday);
-            console.log(habit, "habit incluido");
             setHabitObject(habit);
         }
     }

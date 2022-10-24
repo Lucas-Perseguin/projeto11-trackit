@@ -35,7 +35,7 @@ const Title = styled.h2`
 `;
 
 const Day = styled.h2`
-    margin-top: 14px;
+    margin-top: 20px;
     font-size: 18px;
     font-weight: 400;
     color: #000000;
@@ -43,6 +43,9 @@ const Day = styled.h2`
 
 const DayHabits = styled.div`
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 `;
 
 function History() {
@@ -125,8 +128,7 @@ function History() {
                             </>
                         ) : (
                             <h2>
-                                Em breve você poderá ver o histórico dos seus
-                                hábitos aqui!
+                                Você não tem ainda nenhum hábito cadastrado!
                             </h2>
                         )}
                     </DataContainer>

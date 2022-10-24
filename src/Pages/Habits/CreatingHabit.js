@@ -19,6 +19,8 @@ const Container = styled.div`
             margin-top: 18px;
             margin-bottom: 8px;
             border-color: lightgrey;
+            font-size: 18px;
+            font-weight: 300;
         }
     }
 `;
@@ -109,7 +111,7 @@ function CreatingHabit({
                                 radius="9"
                                 color="#FFFFFF"
                                 ariaLabel="three-dots-loading"
-                                wrapperStyle={{ marginTop: 12.5 }}
+                                wrapperStyle={{ marginTop: 10 }}
                                 wrapperClassName=""
                                 visible={true}
                             />

@@ -44,7 +44,7 @@ const Emphasis = styled.strong`
     font-family: "Lexend Deca", sans-serif;
 `;
 
-function TodayHabit({ habit, disabled = false }) {
+function TodayHabit({ habit, disabled = false, setToggleDone = null }) {
     const [done, setDone] = useState(habit.done);
     const [isChanging, setChanging] = useState(false);
     function handleClick() {
@@ -68,6 +68,7 @@ function TodayHabit({ habit, disabled = false }) {
         );
         promisse.then((response) => {
             setChanging(false);
+            setToggleDone(true);
         });
         promisse.catch((error) => {
             alert(

@@ -2,19 +2,35 @@ import styled from "styled-components";
 
 const Container = styled.div`
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 10;
+    z-index: 100;
+`;
+
+const Panel = styled.div`
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    max-width: 340px;
+    height: 100px;
+    left: calc(50vw - 170px);
+    top: calc(50vh - 140px);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 14px;
+    z-index: 110;
     > div {
-        background-color: white;
-        position: absolute;
+        display: flex;
         width: 100%;
-        max-width: 340px;
-        height: 140px;
-        left: calc(50vw - 170px);
-        top: calc(50vh - 140px);
-        z-index: 10;
+        justify-content: flex-end;
+        gap: 10px;
     }
 `;
 
@@ -28,7 +44,7 @@ function Popup({ show, setShow, setSubmit }) {
     } else {
         return (
             <Container>
-                <div>
+                <Panel>
                     <h2>Confirmar criação do hábito</h2>
                     <div>
                         <button onClick={() => setShow(false)}>
@@ -38,7 +54,7 @@ function Popup({ show, setShow, setSubmit }) {
                             <h2>Confirmar</h2>
                         </button>
                     </div>
-                </div>
+                </Panel>
             </Container>
         );
     }
