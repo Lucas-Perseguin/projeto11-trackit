@@ -13,7 +13,7 @@ const Container = styled.div`
     margin-top: 70px;
     padding-top: 28px;
     width: 100%;
-    height: calc(100vh - 198px);
+    height: calc(100vh - 228px);
     overflow-y: scroll;
     display: flex;
     flex-direction: column;

@@ -16,7 +16,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     background: #e5e5e5;
-    height: calc(100vh - 198px);
+    height: calc(100vh - 228px);
     overflow-y: scroll;
 `;
 
